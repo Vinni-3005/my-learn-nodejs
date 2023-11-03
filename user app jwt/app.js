@@ -15,7 +15,23 @@ let db_url=process.env.Mango_DB_Local
 app.use(cors())
 app.use(morgan('tiny'))
 
+app.use(express.json())
 
+app.get("/",(req,resp)=>{
+    resp.send("Home Page")
+})
+app.use("/user",userRouter)
+maongoose.connect(db_url)
+         .then((resp)=>{
+            console.log("maongo Db connection successful")
+         })
+         .catch((err)=>{
+            console.log(err)
+         })
+app.listen(port,host,(err)=>{
+    if(err) throw err 
+    console.log("server is running")
+})
 
 
 

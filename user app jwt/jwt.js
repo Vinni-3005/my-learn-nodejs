@@ -7,13 +7,14 @@ let user_payload={
 
 //secret key
 let secretkey="abcxyz123"
-
-jwt.sign(user_payload,secretkey,(err,token)=>{
+let token=jwt.sign(user_payload,secretkey,{expresIn:60*60})
+/*jwt.sign(user_payload,secretkey,(err,token)=>{
     if (err) throw err
     token=token
     console.log(token)   //
 })
-
+*/
+console.log(token)
 
 jwt.verify(token,secretkey,(err,payload)=>{
     if(err) throw err
